@@ -1,0 +1,10 @@
+FROM debian:buster
+
+RUN apt update && apt upgrade -y
+RUN apt install -y unbound
+
+#RUN apt install -y dnsutils net-tools zsh less vim procps man nmap wget
+
+RUN touch /var/log/unbound.log && chown unbound:unbound /var/log/unbound.log
+
+CMD service unbound start && tail -f /var/log/unbound.log
