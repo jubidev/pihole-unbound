@@ -20,3 +20,12 @@ Use this to run pihole in combination with unbound as multi-container docker app
 * change password (when apps are running): ` docker container exec -it {CONTAINER_ID_PIHOLE} pihole -a -p`
 * follow unbound logs: `docker container logs {CONTAINER_ID_UNBOUND} --follow`
 * modify verbosity in unbound.conf and restart apps to get more logs (higher number -> more logs)
+
+## Update pihole:
+
+Instead of running the pihole command 'pihole -up', the actual docker image should be updated.
+Follow these steps to perform an update:
+
+* `docker-compose down` to stop the application (make sure to have a reachable dns server to resolve the pull/update requests)
+* `docker pull pihole/pihole:latest` pulls the latest pihole image
+* `docker-compose up -d` start again
